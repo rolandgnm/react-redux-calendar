@@ -17,8 +17,7 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react",
-        "babel-plugin-styled-components"
+        "react"
     ],
     "rules": {
         "react/jsx-filename-extension": [
