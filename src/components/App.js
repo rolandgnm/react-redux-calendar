@@ -1,17 +1,29 @@
 import '@fortawesome/fontawesome-free/css/all.css';
 import React from 'react';
 import styled from 'styled-components';
-import { Button, Icon } from 'reactbulma';
-import Calendar from './Calendar';
+import {
+  Button, Icon, Container,
+} from 'reactbulma';
 import { connect } from 'react-redux';
+import Calendar from './Calendar';
 import { onNewEventClick } from '../store/calendar/actions';
+
+const Layout = styled(Container)`
+  height: 100%;
+  display: flex;
+  flex-direction: column; 
+`;
 
 const Header = styled.div`
   margin: 1em 0;
 `;
 
-const App = ({ events, onNewEventClick}) => (
-  <div className="container">
+const FullHeightCalendar = styled(Calendar)`
+  flex:1;
+`;
+
+const App = ({ events, onNewEventClick }) => (
+  <Layout>
     <Header>
       <Button primary onClick={onNewEventClick}>
         <Icon>
@@ -20,17 +32,16 @@ const App = ({ events, onNewEventClick}) => (
         <span>New Event</span>
       </Button>
     </Header>
-
-    <Calendar />
-  </div>
+    <FullHeightCalendar style={{ height: 'unset' }} />
+  </Layout>
 );
 
-const mStP = (state) => ({
-  events: state.calendar.events
-})
+const mStP = state => ({
+  events: state.calendar.events,
+});
 
 const mDtP = {
-  onNewEventClick
-}
+  onNewEventClick,
+};
 
 export default connect(mStP, mDtP)(App);

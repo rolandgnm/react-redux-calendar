@@ -5,14 +5,14 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localizer = BigCalendar.momentLocalizer(moment);
 
-const Calendar = ({ events = [] }) => (
+const Calendar = ({ events = [], ...props }) => (
   <BigCalendar
     localizer={localizer}
     defaultDate={new Date()}
     defaultView="month"
     views={['month']}
     events={events}
-    style={{ height: '100vh' }}
+    {...props}
   />
 );
 
