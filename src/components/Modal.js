@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import ReactModal from 'react-modal';
 
+ReactModal.setAppElement(document.getElementById('root'));
+
 function ReactModalAdapter({ className, ...props }) {
   const contentClassName = `${className}__content columns`;
   const overlayClassName = `${className}__overlay`;

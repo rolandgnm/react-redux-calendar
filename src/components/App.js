@@ -7,7 +7,7 @@ import {
 import { connect } from 'react-redux';
 import Calendar from './Calendar';
 import { onNewEventClick } from '../store/calendar/actions';
-import EventForm from './EventFormModal';
+import EventFormModal from './EventFormModal';
 
 const Layout = styled(Container)`
   height: 100%;
@@ -38,7 +38,7 @@ const App = ({ events, onNewEventClick }) => (
       <NewEventButton onClick={onNewEventClick} />
     </Header>
     <FullHeightCalendar style={{ height: 'unset' }} />
-    <EventForm />
+    <EventFormModal />
   </Layout>
 );
 
