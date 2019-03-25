@@ -30,6 +30,7 @@ const NewEventButton = props => (
 
 const FullHeightCalendar = styled(Calendar)`
   flex:1;
+  margin-bottom: 1em;
 `;
 
 const App = ({ events, onNewEventClick }) => (
