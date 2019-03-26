@@ -4,15 +4,24 @@ import {
 } from 'reactbulma';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
+import DatePicker from './Datepicker';
 
 const eventStates = ['Solo', 'Team', 'Company'];
+const eventSchema = Yup.object().shape({
+  name: Yup.string()
+    .required('Event name is required')
+    .default('')
+    .max(20),
+  date: Yup.date().required('Date is required!').typeError('Please enter a date').default(null),
+  state: Yup.string().oneOf(['Solo', 'Team', 'Company']).default('Solo'),
+});
 
 const EventForm = ({
-  values, touched, errors, handleChange, handleBlur, handleSubmit,
+  values, touched, errors, handleChange, handleBlur, handleSubmit, setFieldValue,
 }) => (
   <form style={{ flex: 1 }} onSubmit={handleSubmit}>
     <Field>
-      <label className="label" htmlFor="name">Event name</label>
+      <label className="label" htmlFor="name">Event Name</label>
       <Control>
         <Input
           autoComplete="off"
@@ -30,16 +39,19 @@ const EventForm = ({
     <Field>
       <label className="label" htmlFor="date">Date</label>
       <Control>
-        <Input
-          className={`${errors.date && touched.date ? 'is-danger' : ''}`}
+        <DatePicker
+          className={`input ${errors.date && touched.date ? 'is-danger' : ''}`}
+          selected={values.date}
+          onChange={(date) => { setFieldValue('date', date); }}
+          showTimeSelect
+          timeIntervals={15}
+          dateFormat="DD/MM/YY HH:mm"
+          timeFormat="HH:mm"
           name="date"
-          type="datetime-local"
-          onChange={handleChange}
           onBlur={handleBlur}
-          value={values.date}
+          autoComplete="off"
         />
       </Control>
-      {/* USE DATEPICKER */}
       {errors.date && touched.date && <p className="help is-danger">{errors.date}</p>}
     </Field>
 
@@ -67,17 +79,14 @@ const EventForm = ({
   </form>
 );
 
-const eventSchema = Yup.object().shape({
-  name: Yup.string()
-    .max(20)
-    .required('Event name is required'),
-  date: Yup.date().typeError('Please enter a date').required('Date is required!'),
-  state: Yup.string().oneOf(['Solo', 'Team', 'Company']),
-});
 
 const EnhancedForm = withFormik({
   mapPropsToValues: ({ event = {} }) => eventSchema.cast(event),
   validationSchema: eventSchema,
+  handleSubmit: (values, { props }) => {
+    props.onSubmit(values);
+  },
+
 
 })(EventForm);
 

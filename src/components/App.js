@@ -6,7 +6,7 @@ import {
 } from 'reactbulma';
 import { connect } from 'react-redux';
 import Calendar from './Calendar';
-import { onNewEventClick } from '../store/calendar/actions';
+import { toggleEventFormModal } from '../store/calendar/actions';
 import EventFormModal from './EventFormModal';
 
 const Layout = styled(Container)`
@@ -48,7 +48,7 @@ const mStP = state => ({
 });
 
 const mDtP = {
-  onNewEventClick,
+  onNewEventClick: toggleEventFormModal,
 };
 
 export default connect(mStP, mDtP)(App);

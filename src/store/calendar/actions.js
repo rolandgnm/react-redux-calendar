@@ -1,6 +1,10 @@
-import { OPEN_EVENT_FORM } from ".";
+import { OPEN_EVENT_FORM, CREATE_EVENT } from '.';
 
-export const onNewEventClick = () => ({
-    type: OPEN_EVENT_FORM,
-    payload: true
-})
+export const toggleEventFormModal = () => ({
+  type: OPEN_EVENT_FORM,
+});
+
+export const createEvent = event => ({
+  type: CREATE_EVENT,
+  payload: event,
+});
