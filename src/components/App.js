@@ -28,7 +28,7 @@ const NewEventButton = props => (
   </Button>
 );
 
-const FullHeightCalendar = styled(Calendar)`
+const CalendarContainer = styled.div`
   flex:1;
   margin-bottom: 1em;
 `;
@@ -38,7 +38,9 @@ const App = ({ events, onNewEventClick }) => (
     <Header>
       <NewEventButton onClick={onNewEventClick} />
     </Header>
-    <FullHeightCalendar style={{ height: 'unset' }} />
+    <CalendarContainer style={{ height: 'unset' }}>
+      <Calendar />
+    </CalendarContainer>
     <EventFormModal />
   </Layout>
 );

@@ -2,21 +2,30 @@ import React from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import 'moment/locale/en-gb';
-
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { connect } from 'react-redux';
 
 moment.locale('en-gb');
 const localizer = BigCalendar.momentLocalizer(moment);
 
-const Calendar = ({ events = [], ...props }) => (
+const Calendar = ({ events }) => (
   <BigCalendar
     localizer={localizer}
-    defaultDate={new Date()}
-    defaultView="month"
     views={['month']}
     events={events}
-    {...props}
+    titleAccessor="name"
+    startAccessor="date"
+    endAccessor={event => moment(event.date).add(1, 'hour').toDate()}
+    popup
   />
 );
 
-export default Calendar;
+const mStP = state => ({
+  events: state.calendar.events,
+});
+
+const mDtP = {
+
+};
+
+export default connect(mStP, mDtP)(Calendar);
