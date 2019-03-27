@@ -4,6 +4,7 @@ import moment from 'moment';
 import 'moment/locale/en-gb';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { connect } from 'react-redux';
+import { openEditEvent } from '../store/calendar/actions';
 
 moment.locale('en-gb');
 const localizer = BigCalendar.momentLocalizer(moment);
@@ -14,7 +15,7 @@ const eventStyles = {
   Company: { background: '#3160ad' },
 };
 
-const Calendar = ({ events, editEvent }) => (
+const Calendar = ({ events, openEditEvent }) => (
   <BigCalendar
     localizer={localizer}
     views={['month']}
@@ -25,7 +26,7 @@ const Calendar = ({ events, editEvent }) => (
     eventPropGetter={event => ({ style: eventStyles[event.state] })}
     popup
     selectable
-    onSelectEvent={editEvent}
+    onSelectEvent={openEditEvent}
   />
 );
 
@@ -34,9 +35,7 @@ const mStP = state => ({
 });
 
 const mDtP = {
-  editEvent: () => {
-    console.log('Edit Event');
-  },
+  openEditEvent,
 };
 
 export default connect(mStP, mDtP)(Calendar);

@@ -45,7 +45,7 @@ const EventForm = ({
           onChange={(date) => { setFieldValue('date', date); }}
           showTimeSelect
           timeIntervals={15}
-          dateFormat="DD/MM/YY HH:mm"
+          dateFormat="dd/MM/yy HH:mm"
           timeFormat="HH:mm"
           name="date"
           onBlur={handleBlur}
