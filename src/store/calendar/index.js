@@ -2,6 +2,7 @@ export const OPEN_EVENT_FORM = 'OPEN_EVENT_FORM';
 export const CREATE_EVENT = 'CREATE_EVENT';
 export const OPEN_EDIT_EVENT = 'OPEN_EDIT_EVENT';
 export const EDIT_EVENT = 'EDIT_EVENT';
+export const DELETE_EVENT = 'DELETE_EVENT';
 
 const initialState = {
   events: [],
@@ -42,6 +43,14 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         editingEvent: payload,
         [OPEN_EVENT_FORM]: true,
+      };
+
+    case DELETE_EVENT:
+      return {
+        ...state,
+        editingEvent: null,
+        [OPEN_EVENT_FORM]: false,
+        events: state.events.filter(event => event.id !== payload),
       };
 
     default:

@@ -1,5 +1,5 @@
 import {
-  OPEN_EVENT_FORM, CREATE_EVENT, OPEN_EDIT_EVENT, EDIT_EVENT,
+  OPEN_EVENT_FORM, CREATE_EVENT, OPEN_EDIT_EVENT, EDIT_EVENT, DELETE_EVENT,
 } from '.';
 
 export const toggleEventFormModal = () => ({
@@ -19,4 +19,10 @@ export const openEditEvent = event => ({
 export const editEvent = event => ({
   type: EDIT_EVENT,
   payload: event,
+});
+
+
+export const deleteEvent = event => ({
+  type: DELETE_EVENT,
+  payload: event.id,
 });

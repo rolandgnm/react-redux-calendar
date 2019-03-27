@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import Modal from './Modal';
 import EventForm from './EventForm';
 import { OPEN_EVENT_FORM } from '../store/calendar';
-import { createEvent, toggleEventFormModal, editEvent } from '../store/calendar/actions';
+import {
+  createEvent, toggleEventFormModal, editEvent, deleteEvent,
+} from '../store/calendar/actions';
 
 
 const EventFormModal = ({
-  isOpen, createEvent, onCloseModal, editingEvent,
+  isOpen, createEvent, onCloseModal, editingEvent, deleteEvent,
 }) => (
   <Modal
     contentClassName="column is-full-mobile is-half-tablet is-one-third-desktop"
@@ -19,7 +21,11 @@ const EventFormModal = ({
       <Panel>
         <Panel.Heading>New Event</Panel.Heading>
         <Panel.Block style={{ backgroundColor: 'white' }}>
-          <EventForm onSubmit={createEvent} event={editingEvent} />
+          <EventForm
+            onSubmit={createEvent}
+            event={editingEvent}
+            onDeleteEvent={editingEvent && (() => { deleteEvent(editingEvent); })}
+          />
         </Panel.Block>
       </Panel>
     </div>
@@ -39,6 +45,7 @@ const mDtP = {
     return createEvent(event);
   },
   onCloseModal: toggleEventFormModal,
+  deleteEvent,
 };
 
 export default connect(mStP, mDtP)(EventFormModal);

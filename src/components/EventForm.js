@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Input, Field, Control, Button,
+  Input, Field, Control, Button, Icon,
 } from 'reactbulma';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
@@ -17,7 +17,7 @@ const eventSchema = Yup.object().shape({
 });
 
 const EventForm = ({
-  values, touched, errors, handleChange, handleBlur, handleSubmit, setFieldValue,
+  values, touched, errors, handleChange, handleBlur, handleSubmit, setFieldValue, onDeleteEvent,
 }) => (
   <form style={{ flex: 1 }} onSubmit={handleSubmit}>
     <Field>
@@ -75,7 +75,16 @@ const EventForm = ({
       {errors.state && touched.state && <p className="help is-danger">{errors.state}</p>}
     </Field>
 
-    <Button className="is-pulled-right" info type="submit">Save</Button>
+    <div className="is-flex" style={{ flexDirection: 'row-reverse' }}>
+      <Button style={{ flex: '0 25%' }} info type="submit">Save</Button>
+      {onDeleteEvent && (
+      <Button outlined danger style={{ marginRight: '1em' }} onClick={onDeleteEvent} type="button">
+        <Icon small>
+          <i className="fa fa-trash-alt" />
+        </Icon>
+      </Button>
+      )}
+    </div>
   </form>
 );
 
