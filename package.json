@@ -1,7 +1,7 @@
 {
   "name": "react-redux-calendar",
   "version": "0.1.0",
-  "homepage": "https://rolandgnm.github.io/react-redux-calendar/",
+  "homepage": "https://rolandgnm.github.io/react-redux-calendar",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
