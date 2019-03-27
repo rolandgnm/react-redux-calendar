@@ -1,6 +1,7 @@
 {
   "name": "react-redux-calendar",
   "version": "0.1.0",
+  "homepage": "https://rolandgnm.github.io/react-redux-calendar/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
@@ -23,7 +24,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:css": "stylelint './src/**/*.js'"
+    "lint:css": "stylelint './src/**/*.js'",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -b master -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,6 +42,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "gh-pages": "^2.0.1",
     "redux-devtools": "^3.5.0",
     "stylelint": "^9.10.1",
     "stylelint-config-recommended": "^2.1.0",
