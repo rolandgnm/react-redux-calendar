@@ -15,7 +15,11 @@ const generateId = () => Date.now() + Math.floor(Math.random() * 1000);
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case OPEN_EVENT_FORM:
-      return { ...state, [OPEN_EVENT_FORM]: !state.OPEN_EVENT_FORM };
+      return {
+        ...state,
+        [OPEN_EVENT_FORM]: !state.OPEN_EVENT_FORM,
+        editingEvent: OPEN_EVENT_FORM ? initialState.editingEvent : state.editingEvent,
+      };
 
     case CREATE_EVENT:
       return {
