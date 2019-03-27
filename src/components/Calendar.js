@@ -8,7 +8,13 @@ import { connect } from 'react-redux';
 moment.locale('en-gb');
 const localizer = BigCalendar.momentLocalizer(moment);
 
-const Calendar = ({ events }) => (
+const eventStyles = {
+  Solo: { background: '#31ad9d' },
+  Team: { background: '#5131ad' },
+  Company: { background: '#3160ad' },
+};
+
+const Calendar = ({ events, editEvent }) => (
   <BigCalendar
     localizer={localizer}
     views={['month']}
@@ -16,7 +22,10 @@ const Calendar = ({ events }) => (
     titleAccessor="name"
     startAccessor="date"
     endAccessor={event => moment(event.date).add(1, 'hour').toDate()}
+    eventPropGetter={event => ({ style: eventStyles[event.state] })}
     popup
+    selectable
+    onSelectEvent={editEvent}
   />
 );
 
@@ -25,7 +34,9 @@ const mStP = state => ({
 });
 
 const mDtP = {
-
+  editEvent: () => {
+    console.log('Edit Event');
+  },
 };
 
 export default connect(mStP, mDtP)(Calendar);
